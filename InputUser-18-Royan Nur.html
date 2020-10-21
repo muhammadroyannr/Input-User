@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Input User</title>
+</head>
+<body>
+    <h1>XIRPL1/18</h1>
+    <h2>Pendaftaran hiBoys</h2>
+    <div>
+        <form>
+            <table>
+                <tr>
+                    <td><label for="nama">Nama Lengkap</label></td>
+                    <td>:</td>
+                    <td><input type="text" id="name" placeholder="Masukkan Nama"></td>
+                </tr>
+                    <td><label for="email">E-mail</label></td>
+                    <td>:</td>
+                    <td><input type="text" id="email" placeholder="Masukkan Email"></td>
+                </tr>
+                <tr>
+                    <td><label for="negara">Negara</label></td>
+                    <td>:</td>
+                    <td><input type="text" id="negaraa" list="negara"></td>
+                    <datalist id="negara">
+                        <option value="Indonesia"></option>
+                        <option value="Malaysia"></option>
+                        <option value="Filipina"></option>
+                        <option value="Myanmar"></option>
+                    </datalist>
+                </tr>
+                <tr>
+                    <td><label for="tahun_lahir">Tahun Lahir</label></td>
+                    <td>:</td>
+                    <td><input type="number" min="1990" max="2020" id="tahun_lahir"/></td>
+                </tr>
+                <tr>
+                    <td><label>Jenis Kelamin</label></td>
+                    <td>:</td>
+                    <td>
+                        <input type="radio" id="jenis_kelamin" name="jenis_kelamin" value="Pria">Pria<br>
+                        <input type="radio" id="jenis_kelamin" name="jenis_kelamin" value="Wanita">Wanita<br>
+                        <input type="radio" id="jenis_kelamin" name="jenis_kelamin" value="Tidak Terdefinisi">Tidak Terdefinisi
+                        </td>
+                </tr>
+                <tr>
+                    <td><button type="button" onclick="myFunction()">Daftar</button></td>
+                </tr>
+            </table>
+        </form>
+    </div>
+    <div id="tampilan">
+
+        </div>
+
+    <script>
+    function myFunction() {
+      var nama = document.getElementById('name');
+      var email = document.getElementById('email');
+      var negara = document.getElementById('negaraa', 'negara');
+      var tahun_lahir = document.getElementById('tahun_lahir');
+      var jenis_kelamin = document.getElementsByName('jenis_kelamin');
+
+      var opsinama = nama.value;
+      var opsiemail = email.value;
+      var opsinegara = negara.value;
+      var opsiumur = tahun_lahir.value;
+      var realumur = 2020-tahun_lahir.value;
+      var opsijeniskelamin = '';
+
+      for (var i = 0; i < jenis_kelamin.length; i++) {
+        if(jenis_kelamin[i].checked == true){
+          opsijeniskelamin = jenis_kelamin[i].value;
+          break;
+        }
+      }
+
+      let tampilkan = document.getElementById('tampilan');
+      let tertampilkan = '';
+      if(opsinama == '' ||
+      opsiemail == '' ||
+      opsinegara == '' ||
+      opsiumur == '' ||
+      opsijeniskelamin == '') {
+        if(opsinama == '') tertampilkan += '<b>Mohon Masukkan Nama!</b><br></p>';
+        if(opsiemail == '') tertampilkan += '<b>Mohon Masukkan Email!</b><br></p>';
+        if(opsinegara == '') tertampilkan += '<b>Mohon Pilih Negara!</b><br></p>';
+        if(opsiumur == '') tertampilkan += '<b>Mohon Masukkan Tahun Lahir!</b><br></p>';
+        if(opsijeniskelamin == '') tertampilkan += '<b>Kamu Belum Memilih Jenis Kelamin!</b></p>';
+      }else{
+        tertampilkan += `<b><h3>Selamat Datang di hiGirls!</h3>
+        <table>
+		    <tr>
+		        <td>Nama Lengkap </td>
+		        <td>:</td>
+		        <td>${opsinama}</td>
+		      </tr>
+		      <tr>
+		        <td>Email </td>
+		        <td>:</td>
+		        <td>${opsiemail}</td>
+		      </tr>
+
+              <td>Jenis Kelamin </td>
+		        <td>:</td>
+		        <td>${opsijeniskelamin}</td>
+		      </tr>
+		      <tr>
+		        <td>Negara </td>
+		        <td>:</td>
+		        <td>${opsinegara}</td>
+		      </tr>
+		      <tr>
+		        <td>Umur </td>
+		        <td>:</td>
+		        <td>${realumur}</td>
+		      </tr>
+		    </table>`;
+		  }
+		tampilkan.innerHTML = tertampilkan;
+	}
+    </script>
+    
+</body>
+</html>
